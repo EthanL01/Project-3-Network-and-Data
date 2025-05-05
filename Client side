@@ -1,0 +1,14 @@
+import socket
+
+s = socket.socket()
+s.connect(('localhost', 12345))
+
+while True:
+    n = input("Enter a number between -121 and 121 (or 'exit' to quit): ")
+    s.send(n.encode())
+    if n.lower() == "exit":
+        break
+    result = s.recv(1024).decode()
+    print("Encoded output:", result)
+
+s.close()
